@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<robot name="car_model">
+
+  <!-- 🚗 차체 -->
+  <link name="car_body">
+    <visual>
+      <geometry>
+        <mesh filename="car_parts/car_body.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="car_parts/car_body.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="8.0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </link>
+
+  <!-- 🛞 앞왼쪽 바퀴 -->
+  <link name="wheel_fl">
+    <visual>
+      <geometry>
+        <mesh filename="car_parts/wheel_fl.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="car_parts/wheel_fl.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.5"/>
+      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.15" iyz="0.0" izz="0.15"/>
+    </inertial>
+  </link>
+
+  <!-- 🛞 앞오른쪽 바퀴 -->
+  <link name="wheel_fr">
+    <visual>
+      <geometry>
+        <mesh filename="car_parts/wheel_fr.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="car_parts/wheel_fr.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.5"/>
+      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.15" iyz="0.0" izz="0.15"/>
+    </inertial>
+  </link>
+
+  <!-- 🛞 뒤왼쪽 바퀴 -->
+  <link name="wheel_rl">
+    <visual>
+      <geometry>
+        <mesh filename="car_parts/wheel_rl.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="car_parts/wheel_rl.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.5"/>
+      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.15" iyz="0.0" izz="0.15"/>
+    </inertial>
+  </link>
+
+  <!-- 🛞 뒤오른쪽 바퀴 -->
+  <link name="wheel_rr">
+    <visual>
+      <geometry>
+        <mesh filename="car_parts/wheel_rr.dae" scale="1 1 1"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="car_parts/wheel_rr.dae" scale="1 1 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="1.5"/>
+      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.15" iyz="0.0" izz="0.15"/>
+    </inertial>
+  </link>
+
+  <!-- 🔩 Joint Definitions -->
+  <joint name="joint_fl" type="revolute">
+    <parent link="car_body"/>
+    <child link="wheel_fl"/>
+    <origin xyz="0.74 -1.13 0.54" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="50" velocity="10"/>
+  </joint>
+
+  <joint name="joint_fr" type="revolute">
+    <parent link="car_body"/>
+    <child link="wheel_fr"/>
+    <origin xyz="-0.74 -1.13 0.54" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="50" velocity="10"/>
+  </joint>
+
+  <joint name="joint_rl" type="revolute">
+    <parent link="car_body"/>
+    <child link="wheel_rl"/>
+    <origin xyz="0.74 0.99 0.54" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="50" velocity="10"/>
+  </joint>
+
+  <joint name="joint_rr" type="revolute">
+    <parent link="car_body"/>
+    <child link="wheel_rr"/>
+    <origin xyz="-0.74 0.99 0.54" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-3.14" upper="3.14" effort="50" velocity="10"/>
+  </joint>
+
+</robot>
