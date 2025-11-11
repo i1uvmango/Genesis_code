@@ -1,127 +1,207 @@
 <?xml version="1.0"?>
-<robot name="car_model">
+<robot name="car_with_steering_suspension">
 
   <!-- 🚗 차체 -->
   <link name="car_body">
-    <visual>
-      <geometry>
-        <mesh filename="car_parts/car_body.dae" scale="1 1 1"/>
-      </geometry>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="car_parts/car_body.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
     <inertial>
-      <mass value="8.0"/>
-      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+      <mass value="1200.0"/>
+      <inertia
+        ixx="400" ixy="0"  ixz="0"
+        iyy="800" iyz="0"
+        izz="400"/>
     </inertial>
+    <collision>
+      <geometry><box size="2.5 1.2 0.5"/></geometry>
+    </collision>
+    <visual>
+      <geometry><box size="2.5 1.2 0.5"/></geometry>
+    </visual>
   </link>
 
-  <!-- 🛞 앞왼쪽 바퀴 -->
+  <!-- 🛞 바퀴 링크 -->
   <link name="wheel_fl">
-    <visual>
-      <geometry>
-        <mesh filename="car_parts/wheel_fl.dae" scale="1 1 1"/>
-      </geometry>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="car_parts/wheel_fl.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
     <inertial>
-      <mass value="1.5"/>
-      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.15" iyz="0.0" izz="0.15"/>
+      <mass value="20.0"/>
+      <inertia
+        ixx="0.5" ixy="0" ixz="0"
+        iyy="1.0" iyz="0"
+        izz="0.5"/>
     </inertial>
+    <collision>
+      <origin rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.35" length="0.2"/></geometry>
+    </collision>
+    <visual>
+      <origin rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.35" length="0.2"/></geometry>
+    </visual>
   </link>
 
-  <!-- 🛞 앞오른쪽 바퀴 -->
   <link name="wheel_fr">
-    <visual>
-      <geometry>
-        <mesh filename="car_parts/wheel_fr.dae" scale="1 1 1"/>
-      </geometry>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="car_parts/wheel_fr.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
     <inertial>
-      <mass value="1.5"/>
-      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.15" iyz="0.0" izz="0.15"/>
+      <mass value="20.0"/>
+      <inertia
+        ixx="0.5" ixy="0" ixz="0"
+        iyy="1.0" iyz="0"
+        izz="0.5"/>
     </inertial>
+    <collision>
+      <origin rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.35" length="0.2"/></geometry>
+    </collision>
+    <visual>
+      <origin rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.35" length="0.2"/></geometry>
+    </visual>
   </link>
 
-  <!-- 🛞 뒤왼쪽 바퀴 -->
   <link name="wheel_rl">
-    <visual>
-      <geometry>
-        <mesh filename="car_parts/wheel_rl.dae" scale="1 1 1"/>
-      </geometry>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="car_parts/wheel_rl.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
     <inertial>
-      <mass value="1.5"/>
-      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.15" iyz="0.0" izz="0.15"/>
+      <mass value="20.0"/>
+      <inertia
+        ixx="0.5" ixy="0" ixz="0"
+        iyy="1.0" iyz="0"
+        izz="0.5"/>
     </inertial>
+    <collision>
+      <origin rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.35" length="0.2"/></geometry>
+    </collision>
+    <visual>
+      <origin rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.35" length="0.2"/></geometry>
+    </visual>
   </link>
 
-  <!-- 🛞 뒤오른쪽 바퀴 -->
   <link name="wheel_rr">
-    <visual>
-      <geometry>
-        <mesh filename="car_parts/wheel_rr.dae" scale="1 1 1"/>
-      </geometry>
-    </visual>
-    <collision>
-      <geometry>
-        <mesh filename="car_parts/wheel_rr.dae" scale="1 1 1"/>
-      </geometry>
-    </collision>
     <inertial>
-      <mass value="1.5"/>
-      <inertia ixx="0.15" ixy="0.0" ixz="0.0" iyy="0.15" iyz="0.0" izz="0.15"/>
+      <mass value="20.0"/>
+      <inertia
+        ixx="0.5" ixy="0" ixz="0"
+        iyy="1.0" iyz="0"
+        izz="0.5"/>
+    </inertial>
+    <collision>
+      <origin rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.35" length="0.2"/></geometry>
+    </collision>
+    <visual>
+      <origin rpy="1.5708 0 0"/>
+      <geometry><cylinder radius="0.35" length="0.2"/></geometry>
+    </visual>
+  </link>
+
+  <!-- ⚙️ 서스펜션 링크 (fixed 조인트이므로 최소한의 질량) -->
+  <link name="susp_fl">
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+  </link>
+  <link name="susp_fr">
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+  </link>
+  <link name="susp_rl">
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+  </link>
+  <link name="susp_rr">
+    <inertial>
+      <mass value="1.0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
     </inertial>
   </link>
 
-  <!-- 🔩 Joint Definitions -->
-  <joint name="joint_fl" type="revolute">
+  <!-- 🔄 조향 링크 (앞바퀴용, 조향과 회전을 분리) -->
+  <link name="steer_fl_link">
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+  </link>
+  <link name="steer_fr_link">
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+  </link>
+
+  <!-- 🔩 조인트 구조 -->
+  <!-- 앞왼쪽 -->
+  <joint name="susp_fl_joint" type="fixed">
     <parent link="car_body"/>
+    <child link="susp_fl"/>
+    <origin xyz="1.2 -0.6 -0.25" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="steer_fl" type="revolute">
+    <parent link="susp_fl"/>
+    <child link="steer_fl_link"/>
+    <origin xyz="0 0 -0.35" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-0.6" upper="0.6" effort="500" velocity="2"/>
+  </joint>
+
+  <joint name="wheel_fl_rotate" type="continuous">
+    <parent link="steer_fl_link"/>
     <child link="wheel_fl"/>
-    <origin xyz="0.74 -1.13 0.54" rpy="0 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-3.14" upper="3.14" effort="50" velocity="10"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
   </joint>
 
-  <joint name="joint_fr" type="revolute">
+  <!-- 앞오른쪽 -->
+  <joint name="susp_fr_joint" type="fixed">
     <parent link="car_body"/>
+    <child link="susp_fr"/>
+    <origin xyz="1.2 0.6 -0.25" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="steer_fr" type="revolute">
+    <parent link="susp_fr"/>
+    <child link="steer_fr_link"/>
+    <origin xyz="0 0 -0.35" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-0.6" upper="0.6" effort="500" velocity="2"/>
+  </joint>
+
+  <joint name="wheel_fr_rotate" type="continuous">
+    <parent link="steer_fr_link"/>
     <child link="wheel_fr"/>
-    <origin xyz="-0.74 -1.13 0.54" rpy="0 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-3.14" upper="3.14" effort="50" velocity="10"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
   </joint>
 
-  <joint name="joint_rl" type="revolute">
+  <!-- 뒤왼쪽 -->
+  <joint name="susp_rl_joint" type="fixed">
     <parent link="car_body"/>
+    <child link="susp_rl"/>
+    <origin xyz="-1.2 -0.6 -0.25" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="rear_rl" type="continuous">
+    <parent link="susp_rl"/>
     <child link="wheel_rl"/>
-    <origin xyz="0.74 0.99 0.54" rpy="0 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-3.14" upper="3.14" effort="50" velocity="10"/>
+    <origin xyz="0 0 -0.35" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
   </joint>
 
-  <joint name="joint_rr" type="revolute">
+  <!-- 뒤오른쪽 -->
+  <joint name="susp_rr_joint" type="fixed">
     <parent link="car_body"/>
+    <child link="susp_rr"/>
+    <origin xyz="-1.2 0.6 -0.25" rpy="0 0 0"/>
+  </joint>
+
+  <joint name="rear_rr" type="continuous">
+    <parent link="susp_rr"/>
     <child link="wheel_rr"/>
-    <origin xyz="-0.74 0.99 0.54" rpy="0 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-3.14" upper="3.14" effort="50" velocity="10"/>
+    <origin xyz="0 0 -0.35" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
   </joint>
 
 </robot>
